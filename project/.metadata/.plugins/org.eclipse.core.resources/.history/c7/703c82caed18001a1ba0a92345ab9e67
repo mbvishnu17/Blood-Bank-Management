@@ -1,0 +1,7 @@
+function validate(){
+	
+var name= document.getElementById("txtPatientName").value;
+var name= document.getElementById("txtHosName").value;
+var name= document.getElementById("txtHosPatID").value;
+var phone = document.getElementById("txtPhone").value;
+}

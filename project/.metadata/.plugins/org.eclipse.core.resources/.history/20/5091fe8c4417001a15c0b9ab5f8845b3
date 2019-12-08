@@ -1,0 +1,113 @@
+package blood.dl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import blood.dto.DonorDTO;
+
+
+
+public class BloodStockDL {
+	
+	public static int getCount(String blood_grp)
+	{
+		int result = 0;
+		PreparedStatement ps;
+		Connection con =null;
+		
+		
+		try
+		{
+			System.out.println("Inside DL " +blood_grp);
+			con = DBHelper.getConnection();	
+			String sql = "UPDATE BLOOD_BANK SET COUNT = COUNT+1 WHERE BLOOD_GRP =?"; 
+			ps=con.prepareStatement(sql);
+			System.out.println(sql);
+		    ps.setString(1, blood_grp);
+		    result = ps.executeUpdate();
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("**Error** : BloodStocktDL.getCount "+e.getMessage());
+		}
+		return result;
+		
+		
+	}
+	
+	public static int getCountt(String blood_grp)
+	{
+		int result = 0;
+		PreparedStatement ps;
+		Connection con =null;
+		
+		
+		try
+		{
+			System.out.println("Inside DL " +blood_grp);
+			con = DBHelper.getConnection();	
+			String sql = "UPDATE BLOOD_BANK SET COUNT = COUNT-1 WHERE BLOOD_GRP =?"; 
+			ps=con.prepareStatement(sql);
+			System.out.println(sql);
+		    ps.setString(1, blood_grp);
+		    result = ps.executeUpdate();
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("**Error** : BloodStocktDL.getCountt "+e.getMessage());
+		}
+		return result;
+		
+		
+	}
+	
+	public static ArrayList<BloodStockDTO> getCounts()
+	{
+		ArrayList<BloodStockDTO> bloods = null;
+		String query;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		BloodStockDTO blood = null;
+		
+		try
+		{
+			donors = new ArrayList<DonorDTO>();
+			query="SELECT * FROM DONOR_REG order by donor_id";
+			con = DBHelper.getConnection();
+			statement = con.createStatement();
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next())
+			{
+				donor = new DonorDTO();
+				
+				donor.setDonor_id(resultSet.getString("DONOR_ID"));
+				donor.setDonor_name(resultSet.getString("DONOR_NAME"));
+				donor.setBlood_grp(resultSet.getString("BLOOD_GRP"));
+				donor.setGender(resultSet.getString("GENDER"));
+				donor.setAge(resultSet.getString("AGE"));
+				donor.setPhone(resultSet.getLong("PHONE"));
+				donor.setHeight(resultSet.getFloat("HEIGHT"));
+				donor.setWeight(resultSet.getFloat("WEIGHT"));
+				donors.add(donor);
+				
+			}
+			resultSet.close();
+			statement.close();
+			con.close();
+		}
+		catch(Exception e) 
+		{
+			System.out.println("**Error** : DonorDL.getDonors "+e.getMessage());
+			
+		}
+		
+		return donors;
+		
+	}
+}

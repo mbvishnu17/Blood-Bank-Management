@@ -1,0 +1,127 @@
+function validate() {
+
+	var name = document.getElementById("txtDonorName").value;
+	var age = document.getElementById("txtage").value;
+	var gender = document.donor.txtgender.value;
+	var donation = document.donor.txtdonation.value;
+	
+	var phone = document.getElementById("txtPhone").value;
+	
+	var height = document.getElementById("txtHeight");
+	var weight = document.getElementById("txtWeight");
+	var valid = true;
+
+	if (name <= 0) 
+	{
+		alert("Don't leave Name field empty!");
+		valid = false;
+
+	}
+	else
+		{
+		if (name.length < 3)
+			{
+			alert("Enter a valid name");
+			valid = false;
+			}
+		}
+	
+	if(age<=0)
+		{
+			alert("Don't leave Age field empty!");
+			valid = false;
+		}
+	
+	else {
+		if(age < 17 || age > 66)
+	
+			{
+				alert("You are under age/above age");
+				valid = false;
+			}
+		}
+	
+	if(gender=="Male")
+		{
+		if(height.value.length <= 0 || weight.value.length <=0)
+			{
+			alert("Dont leave Height/Weight field empty");
+			valid = false;
+			}
+		else 
+			{
+				if(height.value < 150)
+				{
+					alert("You Cant Donate Blood");
+					valid = false;
+				}
+				if(weight.value < 50)
+					{
+					alert("you are under weight for donation");
+					valid = false;
+					}
+			}
+		}
+	
+	if(gender=="Female")
+	{
+		if(height.value.length <= 0 || weight.value.length <=0)
+		{
+		alert("Dont leave Height/Weight field empty");
+		valid = false;
+		}
+	else 
+		{
+			if(height.value < 140)
+			{
+				alert("You Cant Donate Blood");
+				valid = false;
+			}
+			if(weight.value < 50)
+				{
+				alert("you are under weight for donation");
+				valid = false;
+				}
+		}
+	}
+	
+	if(donation=="Yes")
+	{
+	alert("You cant Donate Blood Now");
+	valid = false;
+	}
+	
+	if(isNan(phone)||phone.length > 10|| phone.length < 10)
+		{
+		alert("Enter a valid Mobile Number");
+		valid = false;
+		}
+	
+		/*
+		 * if (mark1.value.length <= 0) {
+		 * document.getElementById("eAuthor").style.visibility = "visible"; //
+		 * alert("Don't leave the field empty!"); valid = false; } if
+		 * (mark2.value.length <= 0) {
+		 * document.getElementById("eTitle").style.visibility = "visible"; //
+		 * alert("Don't leave the field empty!"); valid = false; } if
+		 * (mark3.value.length <= 0) {
+		 * document.getElementById("ePrice").style.visibility = "visible"; //
+		 * alert("Don't leave the field empty!"); valid = false; }
+		 * 
+		 * if (isNaN(id.value)) {
+		 * document.getElementById("eBook_id").style.visibility = "visible"; //
+		 * alert(imark1); valid = false; }
+		 * 
+		 * if (isNaN(imark1) || (imark1 < 0 || imark1 > 100)) {
+		 * document.getElementById("eMark1").style.visibility = "visible"; //
+		 * alert(imark1); valid = false; } if (isNaN(imark2) || (imark2 < 0 ||
+		 * imark2 > 100)) { document.getElementById("eMark2").style.visibility =
+		 * "visible"; // alert(imark1); valid = false; }
+		 * 
+		 * if (isNaN(imark3) || (imark3 < 0 || imark3 > 100)) {
+		 * document.getElementById("eMark3").style.visibility = "visible"; //
+		 * alert(imark1); valid = false; }
+		 */
+
+	return valid;
+}
